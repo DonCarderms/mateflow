@@ -1,0 +1,4 @@
+venv
+gestao_de_materias/__pycache__
+materias/__pycache__
+*.pyc 
