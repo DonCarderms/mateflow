@@ -21,7 +21,7 @@ A aplicação foi desenvolvida utilizando as seguintes tecnologias:
 ## Como Executar o Projeto
 
 1. Clone o repositório em sua máquina local:
-git clone https://github.com/DonCarderms/Gestao-de-materiais.git
+git clone `https://github.com/DonCarderms/Gestao-de-materiais.git`
 
 
 2. Instale as dependências do backend:
