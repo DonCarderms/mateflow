@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - /root/backend
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    command: npm start 0.0.0.0:3000
+    volumes:
+      - /root/frontend
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: gestao_materiais
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: gtadmin
+    ports:
+      - "5432:543"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: gtadmin@domain.com
+      PGADMIN_DEFAULT_PASSWORD: gtroot
+    ports:
+      - "8080:80"
