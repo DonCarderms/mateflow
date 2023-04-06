@@ -49,7 +49,19 @@ REST_FRAMEWORK = {
     ]
 }
 
+# para permitir que 
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+#Isso permite especificar uma lista de origens permitidas (ou seja, domínios) que podem acessar a API.
+
+# CORS_ORIGIN_WHITELIST = [
+#     'https://meu-front-end.com',
+#     'http://meu-front-end.com',
+# ]
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -84,11 +96,16 @@ WSGI_APPLICATION = "gestao_de_materiais.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gestao_materiais',
+        'USER': 'postgres',
+        'PASSWORD': 'gtadmin',
+        'HOST': 'db',  # Nome do serviço do contêiner PostgreSQL
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation

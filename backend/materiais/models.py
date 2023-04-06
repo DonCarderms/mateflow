@@ -12,7 +12,7 @@ class User(models.Model):
     
 class Material(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
     image = models.CharField(max_length=200)
     active = models.BooleanField(default=False)
