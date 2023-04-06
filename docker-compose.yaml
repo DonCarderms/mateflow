@@ -3,9 +3,10 @@ version: '3'
 services:
   backend:
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - /root/backend
+      - ./backend:/backend
     ports:
       - "8000:8000"
 
@@ -13,7 +14,7 @@ services:
     build: ./frontend
     command: npm start 0.0.0.0:3000
     volumes:
-      - /root/frontend
+      - ./frontend:/frontend
     ports:
       - "3000:3000"
   db:

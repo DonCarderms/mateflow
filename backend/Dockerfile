@@ -20,10 +20,6 @@ RUN . venv/bin/activate
 COPY requirements.txt /backend/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# #aplicar os migrações
-# RUN python manage.py makemigrations
-# RUN python manage.py migrate 
-
 # Copie o restante dos arquivos do seu aplicativo para o diretório de trabalho
 COPY . /backend/
 
