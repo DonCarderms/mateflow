@@ -14,7 +14,7 @@ RUN pip install virtualenv
 RUN virtualenv venv
 
 # Ativa o ambiente virtual
-RUN . venv/bin/activate
+RUN python source venv/bin/activate
 
 # Copie o arquivo requirements.txt e instale as dependências
 COPY requirements.txt /backend/
