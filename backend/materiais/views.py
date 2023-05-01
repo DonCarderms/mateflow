@@ -7,31 +7,34 @@ from rest_framework.parsers import JSONParser
 
 from .serializers import UserSerializer, MaterialSerializer, CommentSerializer
 from .models import Material, User, Comment
-# Create your views here.
+
 
 @api_view(['GET'])
 def apiOverview(request):
 	api_urls = {
 		'user': {		
 			'List':'/user-list/',
-			'Detail View':'/user-detail/<str:pk>/',
+			'Detail View':'/user-detail/<int:pk>/',
 			'Create':'/new-user/',
-			'Update':'/update-user/<str:pk>/',
-			'Delete':'/delete-user/<str:pk>/',
+			'Update':'/update-user/<int:pk>/',
+			'Delete':'/delete-user/<int:pk>/',
+			'materiais':'/user/<int:pk>/materiais',
+			'comments':'/user/<int:pk>/comments',
 		},
 		'material': {		
 			'List':'/material-list/',
-			'Detail View':'/material-detail/<str:pk>/',
+			'Detail View':'/material-detail/<int:pk>/',
 			'Create':'/material-create/',
-			'Update':'/update-material/<str:pk>/',
-			'Delete':'/delete-material/<str:pk>/',
+			'Update':'/update-material/<int:pk>/',
+			'Delete':'/delete-material/<int:pk>/',
+			'comments' : '/material/<int:pk>/comments',
 		},
 		'comment': {		
 			'List':'/comment-list/',
-			'Detail View':'/comment-detail/<str:pk>/',
+			'Detail View':'/comment-detail/<int:pk>/',
 			'Create':'/comment-create/',
-			'Update':'/update-comment/<str:pk>/',
-			'Delete':'/delete-comment/<str:pk>/',
+			'Update':'/update-comment/<int:pk>/',
+			'Delete':'/delete-comment/<int:pk>/',
 		},
 		}
 
@@ -47,9 +50,12 @@ def userList(request):
 
 @api_view(['GET'])
 def userDetail(request, pk):
-	user = User.objects.get(id=pk)
-	serializer = UserSerializer(user, many=False)
-	return Response(serializer.data)
+    try:
+        user = User.objects.get(id=pk)
+        serializer = UserSerializer(user, many=False)
+        return Response(serializer.data)
+    except User.DoesNotExist:
+        return Response("User não existe")
 
 @api_view(['POST'])
 def newUser(request):
@@ -71,9 +77,20 @@ def updateUser(request, pk):
 def deleteUser(request, pk):
     user = User.objects.get(id=pk)
     user.delete()
-    return Response("User deleted successfully")
+    return Response("User deletado com sucesso")
+
+@api_view(['GET'])
+def getMateriaisUser(request, pk):
+	materiais = Material.objects.filter(user_id=pk)
+	serializer = MaterialSerializer(materiais, many=True)
+	return Response(serializer.data)
 
 
+@api_view(['GET'])
+def getCommentsUser(request, pk):
+	comments = Comment.objects.filter(user_id=pk)
+	serializer = CommentSerializer(comments, many=True)
+	return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -84,9 +101,12 @@ def materialList(request):
 
 @api_view(['GET'])
 def materialDetail(request, pk):
-	material = Material.objects.get(id=pk)
-	serializer = MaterialSerializer(material, many=False)
-	return Response(serializer.data)
+	try:
+		material = Material.objects.get(id=pk)
+		serializer = MaterialSerializer(material, many=False)
+		return Response(serializer.data)
+	except Material.DoesNotExist:
+		return Response("material não existe ou foi deletado")
 
 @api_view(['POST'])
 def createMaterial(request):
@@ -111,6 +131,11 @@ def deleteMaterial(request, pk):
     material.delete()
     return Response("material deleted successfully")
 
+@api_view(['GET'])
+def getComemntsMaterial(request, pk):
+	comments = Comment.objects.filter(material_id=pk)
+	serializer = CommentSerializer(comments, many=True)
+	return Response(serializer.data)
 
 
 
@@ -147,4 +172,9 @@ def updateComment(request, pk):
 def deleteComment(request, pk):
     comment = Comment.objects.get(id=pk)
     comment.delete()
-    return Response("comment deleted successfully")
+    return Response("commentario deletado ")
+
+
+
+
+
