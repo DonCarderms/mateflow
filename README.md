@@ -24,7 +24,7 @@ A aplicação foi desenvolvida utilizando as seguintes tecnologias:
    git clone `https://github.com/DonCarderms/Gestao-de-materiais.git`
 
 2. Instale as dependências do backend:
-   cd nome-do-repositorio/backend
+   cd backend/
    pip install -r requirements.txt
 
 3. Execute as migrações do banco de dados:
