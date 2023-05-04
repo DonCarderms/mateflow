@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-5u0*v$092k)vqz)-4b8x)71b133obw149u@yc3+#66#yo%f!7r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,22 +38,21 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "stdimage",
     "materiais",
 ]
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ]
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"]
 }
 
-# para permitir que 
+# para permitir que
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-#Isso permite especificar uma lista de origens permitidas (ou seja, domínios) que podem acessar a API.
+# Isso permite especificar uma lista de origens permitidas (ou seja, domínios) que podem acessar a API.
 
 # CORS_ORIGIN_WHITELIST = [
 #     'https://meu-front-end.com',
@@ -76,7 +75,7 @@ ROOT_URLCONF = "gestao_de_materiais.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['templates'],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -96,16 +95,15 @@ WSGI_APPLICATION = "gestao_de_materiais.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gestao_materiais',
-        'USER': 'postgres',
-        'PASSWORD': 'gtadmin',
-        'HOST': 'db',  # Nome do serviço do contêiner PostgreSQL
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "gestao_materiais",
+        "USER": "postgres",
+        "PASSWORD": "gtadmin",
+        "HOST": "db",  # Nome do serviço do contêiner PostgreSQL
+        "PORT": "5432",
     }
 }
-
 
 
 # Password validation

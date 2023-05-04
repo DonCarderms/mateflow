@@ -1,6 +1,7 @@
 import { Outlet, RouterProvider } from "react-router-dom";
 import { router } from "./routes/AppRoutes";
 import Header from "./components/headers";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 interface Users {
@@ -12,14 +13,16 @@ interface Users {
   active: boolean;
 }
 
+const queryClient = new QueryClient();
+
 /* eslint-disable react/react-in-jsx-scope */
 const App = () => {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <Header />
       <RouterProvider router={router} />
       <Outlet />
-    </div>
+    </QueryClientProvider>
   );
 };
 
