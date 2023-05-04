@@ -13,8 +13,8 @@ A aplicação foi desenvolvida utilizando as seguintes tecnologias:
   - Django Rest Framework para criação da API
 
 - Frontend:
-  - Linguagem JavaScript
-  - Framework React com TypeScript
+  - Linguagem TypeScript
+  - Framework React 
   - React Router para roteamento das URLs
   - React Query para requisições
 
