@@ -46,18 +46,18 @@ A aplicação estará executando na porta 3000 por padrão.
 
 A aplicação possui as seguintes funcionalidades:
 
-- Visualização da lista de materiais cadastrados: `http://localhost:3000/materiais`
-- Cadastro de um novo material: `http://localhost:3000/materiais/novo`
-- Visualização das informações de um material específico: `http://localhost:3000/materiais/:id`
-- Atualização das informações de um material específico: `http://localhost:3000/materiais/:id/editar`
-- Remoção de um material específico: `http://localhost:3000/materiais/:id/remover`
-- Visualização da lista de usuários cadastrados: `http://localhost:3000/usuarios`
-- Cadastro de um novo usuário: `http://localhost:3000/usuarios/novo`
-- Visualização das informações de um usuário específico: `http://localhost:3000/usuarios/:id`
-- Atualização das informações de um usuário específico: `http://localhost:3000/usuarios/:id/editar`
-- Remoção de um usuário específico: `http://localhost:3000/usuarios/:id/remover`
-- Visualização da lista de comentários cadastrados em um material específico: `http://localhost:3000/materiais/:id/comentarios`
-- Cadastro de um novo comentário em um material específico: `http://localhost:3000/materiais/:id/comentarios/novo`
-- Visualização das informações de um comentário específico em um material específico: `http://localhost:3000/materiais/:id/comentarios/:id_comentario`
-- Atualização das informações de um comentário específico em um material específico: `http://localhost:3000/materiais/:id/comentarios/:id_comentario/editar`
+- Visualização da lista de materiais cadastrados: 
+- Cadastro de um novo material: 
+- Visualização das informações de um material específico: 
+- Atualização das informações de um material específico: 
+- Remoção de um material específico:
+- Visualização da lista de usuários cadastrados: 
+- Cadastro de um novo usuário:
+- Visualização das informações de um usuário específico: 
+- Atualização das informações de um usuário específico:
+- Remoção de um usuário específico:
+- Visualização da lista de comentários cadastrados em um material específico: 
+- Cadastro de um novo comentário em um material específico: 
+- Visualização das informações de um comentário específico em um material específico: 
+- Atualização das informações de um comentário específico em um material específico: 
 - Remoção de um comentário específico
