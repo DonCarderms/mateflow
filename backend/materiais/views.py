@@ -1,5 +1,3 @@
-from django.views.decorators.csrf import csrf_exempt
-
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -33,14 +31,14 @@ class UserV1(viewsets.ModelViewSet):
 			user.delete()
 			return Response("User deletado com sucesso")
 
-		@action(detail=True, url_path='(?P<material_pk>[^/.]+)/materiais', methods=['get'])
-		def get_materiais_user(request, pk):
+		@action(detail=True, url_path='materiais', methods=['get'])
+		def get_materiais_user(self, request, pk):
 			materiais = Material.objects.filter(user_id=pk)
 			serializer = MaterialSerializer(materiais, many=True)
 			return Response(serializer.data)
 
-		@action(detail=True, url_path='(?P<comment_pk>[^/.]+)/comments', methods=['get'])
-		def get_comments_user(request, pk):
+		@action(detail=True, url_path='comments', methods=['get'])
+		def get_comments_user(self, request, pk):
 			comments = Comment.objects.filter(user_id=pk)
 			serializer = CommentSerializer(comments, many=True)
 			return Response(serializer.data)
@@ -69,7 +67,7 @@ class MateriaisV1(viewsets.ModelViewSet):
 			material.delete()
 			return Response("material deleted successfully")
 
-		@action(detail=True, url_path='(?P<comment_pk>[^/.]+)/comments', methods=['get'])
+		@action(detail=True, url_path='/comments', methods=['get'])
 		def get_comments_material(self, request, pk):
 			comments = Comment.objects.filter(material_id=pk)
 			serializer = CommentSerializer(comments, many=True)
