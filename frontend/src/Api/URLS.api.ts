@@ -1,4 +1,4 @@
-export const URL = 'http://localhost:8000/'
+export const URL = 'http://localhost:8000/gm-api/v1/'
 export const USERS = 'user-list';
 export const USER = 'user-detail/';
 export const NEW_USER = 'new-user';

@@ -26,6 +26,8 @@ COPY . /backend/
 # Exponha a porta em que o seu aplicativo será executado
 EXPOSE 8000
 
+# Execute o arquivo backend.sh durante o processo de construção da imagem
+
 # Inicie o seu aplicativo com o seguinte comando
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 

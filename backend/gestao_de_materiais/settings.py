@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-5u0*v$092k)vqz)-4b8x)71b133obw149u@yc3+#66#yo%f!7r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost", "app.mateflow"]
 
 
 # Application definition

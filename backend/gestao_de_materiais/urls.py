@@ -9,7 +9,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="Gestão de materiais API",
       default_version='v1',
-      description="API official do gt ",
+      description="API official do mateflow",
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),

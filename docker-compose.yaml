@@ -1,10 +1,38 @@
 version: '3'
 
 services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: gestao_materiais
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: gtadmin
+    ports:
+      - "5433:5432"
+        
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: gtadmin@domain.com
+      PGADMIN_DEFAULT_PASSWORD: gtroot
+    ports:
+      - "8080:80"
+
   backend:
     build: ./backend
     command: >
-      bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      bash -c "chmod +x backend.sh &&/bin/bash backend.sh"
+
     volumes:
       - ./backend:/backend
     ports:
@@ -17,21 +45,3 @@ services:
       - ./frontend:/frontend
     ports:
       - "3000:3000"
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: gestao_materiais
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: gtadmin
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: gtadmin@domain.com
-      PGADMIN_DEFAULT_PASSWORD: gtroot
-    ports:
-      - "8080:80"
