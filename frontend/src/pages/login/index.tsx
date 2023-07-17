@@ -1,14 +1,14 @@
 /* eslint-disable no-unexpected-multiline */
 /* eslint-disable react/react-in-jsx-scope */
-import { ChangeEvent, useEffect, useReducer } from "react";
+import { ChangeEvent, useContext, useEffect, useReducer } from "react";
 
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 
 import { InputProps, FormState, Action } from "./Forms";
-import { Container, LoginContainer, Links } from "./style";
+import { Container, LoginContainer, Links } from "../../styles/login";
 import { Link } from "react-router-dom";
-import { AnimationSlideIn } from "../../components/resources/styles geral/animation/AnimtionSlideIn";
-import { URL, USERS } from "../../Api/URLS.api";
+import { AnimationSlideIn } from "../../styles/animation/AnimtionSlideIn";
+// import { URL, USERS } from "../../Api/URLS.api";
 
 const initialForm = {
   email: {
@@ -52,44 +52,30 @@ const Login = () => {
     dispatch({ type: "UPDATE_FIELD", field: id, value });
   };
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["listUser"],
-    queryFn: () => fetch(`${URL}/${USERS}`).then((res) => res.json()),
-  });
-
-  isLoading ? console.log("loading...") : console.log(data);
-  if (isLoading) {
-    return (
-      <div>
-        <span>loading...</span>
-      </div>
-    );
-  } else {
-    return (
-      <AnimationSlideIn>
-        <Container>
-          <LoginContainer>
-            <form action="">
-              {Object.keys(formState).map((field) => (
-                <Input
-                  key={field}
-                  id={field}
-                  label={formState[field].label}
-                  value={formState[field].value}
-                  changed={handleInputChange}
-                />
-              ))}
-              <button type="submit">logar</button>
-            </form>
-            <Links>
-              <Link to="#">Esqueceu a senha?</Link>
-              <Link to={"/cadastro"}>Cadastre-se</Link>
-            </Links>
-          </LoginContainer>
-        </Container>
-      </AnimationSlideIn>
-    );
-  }
+  return (
+    <AnimationSlideIn>
+      <Container>
+        <LoginContainer>
+          <form action="">
+            {Object.keys(formState).map((field) => (
+              <Input
+                key={field}
+                id={field}
+                label={formState[field].label}
+                value={formState[field].value}
+                changed={handleInputChange}
+              />
+            ))}
+            <button type="submit">logar</button>
+          </form>
+          <Links>
+            <Link to="#">Esqueceu a senha?</Link>
+            <Link to={"/cadastro"}>Cadastre-se</Link>
+          </Links>
+        </LoginContainer>
+      </Container>
+    </AnimationSlideIn>
+  );
 };
 
 export default Login;

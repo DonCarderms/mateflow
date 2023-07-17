@@ -8,12 +8,16 @@ export const HeaderConatiner = styled.header`
   position: fixed;
   width: 100vw;
   height: 50px;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  background-color: ${({ theme }) => theme.background};
   //   background-color: #383838;
   border-bottom: 1px solid #ccc;
   padding: 10px;
 `;
-
+export const UserTheme = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 export const UserCircleIcon = styled.header`
   img {
     cursor: pointer;

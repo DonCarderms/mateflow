@@ -1,25 +1,45 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { AnimationSlideIn } from "../resources/styles geral/animation/AnimtionSlideIn";
+import { AnimationSlideIn } from "../../styles/animation/AnimtionSlideIn";
 import Search from "../search";
-import { HeaderConatiner, UserCircleIcon } from "./style";
+import * as S from "../../styles/header";
 import usercircle from "../../assets/images/user-circle-svgrepo-com.svg";
 import ModalUser from "../resources/modais/ModalUser";
-import { useState } from "react";
+import React, { MouseEventHandler, useContext, useState } from "react";
+import { ThemeContext, ThemeContextType } from "../../context/ThemesContext";
+
+type ThemeButtonChangeType = {
+  onClick: MouseEventHandler;
+  children: React.ReactNode;
+};
+const ThemeButtonChange = ({ onClick, children }: ThemeButtonChangeType) => {
+  return (
+    <>
+      <button onClick={onClick}>{children}</button>
+    </>
+  );
+};
 
 const Header = () => {
-  const [modalUser, setModalUser] = useState(false);
+  const [modalUser, setModalUser] = useState(true);
   const showModalUser = () => setModalUser(!modalUser);
+  const { theme, setChangeTheme } = useContext<ThemeContextType>(ThemeContext);
 
+  const handleChangeTheme = () => setChangeTheme && setChangeTheme();
   return (
     <>
       <AnimationSlideIn>
-        <HeaderConatiner>
+        <S.HeaderConatiner>
           <Search />
-          <UserCircleIcon onClick={showModalUser}>
-            <img src={usercircle} alt="" />
-            {modalUser ? <ModalUser /> : null}
-          </UserCircleIcon>
-        </HeaderConatiner>
+          <S.UserTheme>
+            <S.UserCircleIcon onClick={showModalUser}>
+              <img src={usercircle} alt="" />
+              {modalUser || <ModalUser />}
+            </S.UserCircleIcon>
+            <ThemeButtonChange onClick={handleChangeTheme}>
+              {theme}
+            </ThemeButtonChange>
+          </S.UserTheme>
+        </S.HeaderConatiner>
       </AnimationSlideIn>
     </>
   );

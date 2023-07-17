@@ -1,7 +1,12 @@
-import { Outlet, RouterProvider } from "react-router-dom";
-import { router } from "./routes/AppRoutes";
-import Header from "./components/headers";
+import { useContext } from "react";
+import { Outlet } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import Header from "./components/headers";
+import GlobalStyle from "./styles/GolbalStyle";
+import { darkTheme, lightTheme } from "./styles/themes/theme";
+import { ThemeContext } from "./context/ThemesContext";
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 interface Users {
@@ -12,16 +17,19 @@ interface Users {
   email: string;
   active: boolean;
 }
-
 const queryClient = new QueryClient();
 
 /* eslint-disable react/react-in-jsx-scope */
 const App = () => {
+  const { theme } = useContext(ThemeContext);
+  const themeMode = theme === "dark" ? darkTheme : lightTheme;
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
-      <RouterProvider router={router} />
-      <Outlet />
+      <ThemeProvider theme={themeMode}>
+        <Header />
+        <Outlet />
+        <GlobalStyle />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

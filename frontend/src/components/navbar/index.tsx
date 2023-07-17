@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-import { NavConatiner } from "./style";
+import { NavConatiner } from "../../styles/navabar";
 
 const Navbar = () => {
   return (

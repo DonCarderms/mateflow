@@ -3,9 +3,9 @@
 import { ChangeEvent, useReducer } from "react";
 
 import { InputProps, FormState, Action } from "../login/Forms";
-import { Container, LoginContainer, Links } from "../login/style";
+import { Container, LoginContainer, Links } from "../../styles/login";
 import { Link } from "react-router-dom";
-import { AnimationSlideIn } from "../../components/resources/styles geral/animation/AnimtionSlideIn";
+import { AnimationSlideIn } from "../../styles/animation/AnimtionSlideIn";
 
 const initialForm = {
   username: {
