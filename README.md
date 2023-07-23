@@ -18,7 +18,7 @@ A aplicação foi desenvolvida utilizando as seguintes tecnologias:
 
 - Frontend:
   - TypeScript
-  - Framework React 
+  - React 
   - React Router para roteamento das URLs
   - React Query para requisições
 
