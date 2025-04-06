@@ -1,21 +1,24 @@
-# Use a imagem node como base
-FROM node:latest
+# Use a specific Node version (better stability)
+FROM node:18-alpine
 
-# Copie os arquivos do aplicativo
-COPY . /frontend
-WORKDIR /frontend
+# Set working directory
+WORKDIR /app
 
-# Instale as dependências
-RUN npm i
+# Copy only package files first (for better caching)
+COPY package*.json ./
 
-# Exponha a porta em que o seu aplicativo será executado
+# Install dependencies (clean install)
+RUN npm ci
+
+# Copy the rest of the app
+COPY . .
+
+# Set React environment variables (for Docker)
+ENV HOST=0.0.0.0
+ENV PORT=3000
+
+# Expose port (for documentation)
 EXPOSE 3000
 
-# Defina o comando de inicialização
-CMD ["npm", "start", "0.0.0.0:3000"]
-
-# # Construa o aplicativo
-# RUN npm run build
-
-# # Defina o comando de inicialização
-# CMD ["npx", "serve", "-s", "build"]
+# Start the app (React default)
+CMD ["npm", "start"]
